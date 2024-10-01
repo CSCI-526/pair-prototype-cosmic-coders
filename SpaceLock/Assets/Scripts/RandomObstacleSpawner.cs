@@ -6,7 +6,7 @@ public class RandomObstacleSpawner : MonoBehaviour
     public GameObject[] obstaclePrefabs;
     private readonly float startDelay = 2f;
     private readonly float spawnInterval = 1.5f;
-    private readonly int poolSize = 10;
+    private readonly int poolSize = 15;
     private List<GameObject> obstaclePool;
     private readonly float despawnX = 60f;
 
@@ -42,7 +42,6 @@ public class RandomObstacleSpawner : MonoBehaviour
             obstacle.transform.rotation = obstaclePrefabs[0].transform.rotation;
             obstacle.SetActive(true); // Activate the object
 
-            // Scale and set mass
             float randomScale = Random.Range(2f, 10f);
             obstacle.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
