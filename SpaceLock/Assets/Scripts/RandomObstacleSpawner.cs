@@ -4,45 +4,41 @@ using System.Collections.Generic;
 public class RandomObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;
-    private readonly float startDelay = 2f;
+    private readonly float startDelay = 0f;
     private readonly float spawnInterval = 1.5f;
-    private readonly int poolSize = 15;
+    private readonly int poolSize = 20;
     private List<GameObject> obstaclePool;
     private readonly float despawnX = 60f;
 
     void Start()
     {
-        // Initialize the object pool
         obstaclePool = new List<GameObject>();
 
-        // Populate the object pool
         for (int i = 0; i < poolSize; i++)
         {
             int obstacleIndex = Random.Range(0, obstaclePrefabs.Length);
             GameObject obstacle = Instantiate(obstaclePrefabs[obstacleIndex]);
-            obstacle.SetActive(false);  // Disable the object initially
+            obstacle.SetActive(false);
             obstaclePool.Add(obstacle);
         }
 
         InvokeRepeating(nameof(SpawnObstacles), startDelay, spawnInterval);
     }
 
-    void SpawnObstacles()
-    {
-        // Find an inactive object in the pool
+    void SpawnObstacles() {
         GameObject obstacle = GetPooledObstacle();
         if (obstacle != null)
         {
             float randomZ = Random.Range(-32f, 18f);
-            float x = -30f;
+            float x = -60f;
             float randomY = Random.Range(2f, 25f);
 
             Vector3 spawnPosition = new Vector3(x, randomY, randomZ);
             obstacle.transform.position = spawnPosition;
             obstacle.transform.rotation = obstaclePrefabs[0].transform.rotation;
-            obstacle.SetActive(true); // Activate the object
+            obstacle.SetActive(true);
 
-            float randomScale = Random.Range(2f, 10f);
+            float randomScale = Random.Range(4f, 10f);
             obstacle.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
             float mass = randomScale * 10f;
@@ -55,9 +51,7 @@ public class RandomObstacleSpawner : MonoBehaviour
         }
     }
 
-    GameObject GetPooledObstacle()
-    {
-        // Search for an inactive object in the pool
+    GameObject GetPooledObstacle() {
         foreach (var obstacle in obstaclePool)
         {
             if (!obstacle.activeInHierarchy)
@@ -69,9 +63,7 @@ public class RandomObstacleSpawner : MonoBehaviour
         return null;
     }
 
-    void Update()
-    {
-        // Check for obstacles to recycle
+    void Update() {
         foreach (var obstacle in obstaclePool)
         {
             if (obstacle.activeInHierarchy && obstacle.transform.position.x > despawnX)
@@ -81,9 +73,7 @@ public class RandomObstacleSpawner : MonoBehaviour
         }
     }
 
-    void RecycleObstacle(GameObject obstacle)
-    {
-        // Deactivate and prepare the obstacle to be reused
+    void RecycleObstacle(GameObject obstacle) {
         obstacle.SetActive(false);
     }
 }
