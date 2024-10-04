@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Grapple : MonoBehaviour {
     public float maxGrappleDistance = 30f;
@@ -9,6 +12,13 @@ public class Grapple : MonoBehaviour {
     private float grappleSpeed;
     private Vector3 initialPosition;
     private float elapsedTime;
+    public int maxGrapples = 5;
+    private int remainingGrapples;
+    public TextMeshProUGUI grappleCountText;
+    public Image gameOverImage;
+    public Image gameWinImage;
+    public GameObject finalWall;
+    private bool hasWon = false;
 
     void Start() {
         lineRenderer = GetComponent<LineRenderer>();
@@ -16,13 +26,19 @@ public class Grapple : MonoBehaviour {
             Debug.LogError("LineRenderer component is missing.");
         }
         lineRenderer.enabled = false;
+
+        remainingGrapples = maxGrapples;
+        gameOverImage.enabled = false;
+        // restartButton.gameObject.SetActive(false);
+        gameWinImage.enabled = false;
+        // restartButton.onClick.AddListener(RestartGame);
+        UpdateGrappleCountText();
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && remainingGrapples > 0) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
 
             if (Physics.Raycast(ray, out hit, maxGrappleDistance)) {
                 if (hit.collider != null && hit.collider.gameObject != gameObject && hit.collider.CompareTag("Obstacle")) {
@@ -38,6 +54,9 @@ public class Grapple : MonoBehaviour {
                         elapsedTime = 0f;
 
                         grappleSpeed = distanceToHit / grappleTime;
+
+                        remainingGrapples--;
+                        UpdateGrappleCountText();
 
                         Debug.Log("Grappling to object: " + hit.collider.gameObject.name);
                     } else {
@@ -66,10 +85,15 @@ public class Grapple : MonoBehaviour {
         } else {
             lineRenderer.enabled = false;
         }
+
+        if (remainingGrapples == 0 && !hasWon) {
+            gameOverImage.enabled = true;
+            grappleCountText.enabled = false;
+            Invoke("RestartGame", 2f);
+        }
     }
 
     void FixedUpdate() {
-
         if (isGrappling && grappledObject != null) {
             transform.position = grappledObject.position;
         }
@@ -81,12 +105,32 @@ public class Grapple : MonoBehaviour {
             lineRenderer.enabled = false;
             transform.SetParent(collision.transform);
         }
+
+        if (collision.gameObject == finalWall) {
+            WinGame();
+        }
     }
 
     void OnCollisionExit(Collision collision) {
-
         if (collision.gameObject.CompareTag("Obstacle")) {
             transform.SetParent(null);
         }
+    }
+
+    void UpdateGrappleCountText() {
+        if (grappleCountText != null) {
+            grappleCountText.text = "Grapples Remaining: " + remainingGrapples;
+        }
+    }
+
+    void RestartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void WinGame() {
+        hasWon = true;
+        gameWinImage.enabled = true;
+        grappleCountText.enabled = false;
+        // restartButton.gameObject.SetActive(true);
     }
 }

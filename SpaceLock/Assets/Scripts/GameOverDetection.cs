@@ -9,7 +9,7 @@ public class GameOverDetection : MonoBehaviour {
     public GameObject Cube3;
     public Image gameOverImage;
     public TextMeshProUGUI numberGrapples;
-    public Button restartButton;
+    // public Button restartButton;
     void Start() {
         if (player.GetComponent<Collider>() == null || Cube3.GetComponent<Collider>() == null)
         {
@@ -23,9 +23,9 @@ public class GameOverDetection : MonoBehaviour {
 
         player.GetComponent<Collider>().isTrigger = true;
         Cube3.GetComponent<Collider>().isTrigger = true;
-        restartButton.gameObject.SetActive(false);
+        // restartButton.gameObject.SetActive(false);
         gameOverImage.enabled = false;
-        restartButton.onClick.AddListener(RestartGame);
+        // restartButton.onClick.AddListener(RestartGame);
     }
 
     void Update() {
@@ -38,7 +38,8 @@ public class GameOverDetection : MonoBehaviour {
             Debug.Log("Trigger detected between player and wall.");
             gameOverImage.enabled = true;
             numberGrapples.enabled = false;
-            restartButton.gameObject.SetActive(true);
+            // restartButton.gameObject.SetActive(true);
+            Invoke("RestartGame", 2f);
         }
     }
 
