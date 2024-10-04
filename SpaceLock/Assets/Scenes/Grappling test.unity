@@ -1453,7 +1453,7 @@ MonoBehaviour:
   player: {fileID: 7552009}
   cameraDistance: 0.8
   collisionRadius: 0.5
-  collisionOffset: 0.1
+  collisionOffset: 0.5
   collisionMask:
     serializedVersion: 2
     m_Bits: 0
