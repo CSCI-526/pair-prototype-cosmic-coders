@@ -9,12 +9,8 @@ public class CameraFollow : MonoBehaviour {
     private float pitch = 0.0f;
 
     void Start() {
-    if (player == null) {
-        Debug.LogError("Player GameObject is not assigned.");
-    }
 
     transform.position = player.transform.position + offset;
-
     yaw = player.transform.eulerAngles.y;
     pitch = player.transform.eulerAngles.x;
     }

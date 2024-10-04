@@ -43,7 +43,7 @@ public class Grapple : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, maxGrappleDistance)) {
                 if (hit.collider != null && hit.collider.gameObject != gameObject && hit.collider.CompareTag("Obstacle")) {
                     float distanceToHit = Vector3.Distance(transform.position, hit.point);
-                    Debug.Log("Distance to hit: " + distanceToHit);
+                    //Debug.Log("Distance to hit: " + distanceToHit);
 
                     if (distanceToHit <= maxGrappleDistance) {
                         grappledObject = hit.collider.transform;
@@ -131,6 +131,6 @@ public class Grapple : MonoBehaviour {
         hasWon = true;
         gameWinImage.enabled = true;
         grappleCountText.enabled = false;
-        // restartButton.gameObject.SetActive(true);
+       
     }
 }

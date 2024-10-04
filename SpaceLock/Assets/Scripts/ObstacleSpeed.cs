@@ -7,16 +7,13 @@ public class ObstacleSpeed : MonoBehaviour
     private GameObject player;
     public Material farObstacle;
     public Material nearObstacle;
-    public float thresholdDistance = 50f;
+    public float thresholdDistance = 30f ;
 
     void Start()
     {
 
       player = GameObject.FindWithTag("Player");
-      if (player == null) {
-          Debug.LogError("Player1 tag not found! Make sure your player object has the correct tag.");
-          return;
-      }
+      
 
       Vector3 scale = transform.localScale;
 

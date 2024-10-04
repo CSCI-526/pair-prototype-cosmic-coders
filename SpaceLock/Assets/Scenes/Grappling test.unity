@@ -1367,10 +1367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41c1623bf2c14c208b05e42007015dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1036112726}
-  Cube3: {fileID: 1114813127}
-  gameOverImage: {fileID: 558443130}
-  numberGrapples: {fileID: 351643617}
 --- !u!114 &1114813135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1256363977}
   - component: {fileID: 1256363976}
+  - component: {fileID: 1256363978}
   m_Layer: 0
   m_Name: RandomSpawner
   m_TagString: Untagged
@@ -1416,18 +1413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5eca41a06414b67a72a4974447c2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefabs:
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
-  - {fileID: 2266585411967085508, guid: 787c43ea33db244df923fa10f6052a48, type: 3}
 --- !u!4 &1256363977
 Transform:
   m_ObjectHideFlags: 0
@@ -1443,6 +1428,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256363978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256363975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94bc052c742172142bc82f0b43e975b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs: []
 --- !u!1 &1569522898
 GameObject:
   m_ObjectHideFlags: 0
