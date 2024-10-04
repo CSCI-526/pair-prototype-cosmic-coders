@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ObstacleSpeed : MonoBehaviour
 {
-    private float minSpeed = 3f;
+    private float minSpeed = 1f;
     private float speed;
     private GameObject player;
     public Material farObstacle;
     public Material nearObstacle;
-    public float thresholdDistance = 100f;
+    public float thresholdDistance = 50f;
 
     void Start()
     {
@@ -23,8 +23,6 @@ public class ObstacleSpeed : MonoBehaviour
       float scaleFactor = (scale.x + scale.y + scale.z) / 3f;
 
       speed =  minSpeed * scaleFactor;
-
-      // Debug.Log("Scale = " + scaleFactor + ", speed = " + speed);
     }
 
     void Update()

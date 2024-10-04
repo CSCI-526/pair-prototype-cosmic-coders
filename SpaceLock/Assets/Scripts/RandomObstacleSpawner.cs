@@ -5,7 +5,7 @@ public class RandomObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;
     private readonly float startDelay = 0f;
-    private readonly float spawnInterval = 1.5f;
+    private readonly float spawnInterval = 0.5f;
     private readonly int poolSize = 20;
     private List<GameObject> obstaclePool;
     private readonly float despawnX = 60f;
@@ -46,7 +46,6 @@ public class RandomObstacleSpawner : MonoBehaviour
             if (obstacle.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.mass = mass;
-                // Debug.Log("Obstacle Mass: " + mass);
             }
         }
     }

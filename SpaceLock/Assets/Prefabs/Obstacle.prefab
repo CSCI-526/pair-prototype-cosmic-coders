@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2696434661228918078}
   m_Layer: 6
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farObstacle: {fileID: 2100000, guid: ea106ef629bedc04d8acde84de232353, type: 2}
   nearObstacle: {fileID: 2100000, guid: 3cf9e915ef7554190b7669537095105b, type: 2}
-  thresholdDistance: 75
+  thresholdDistance: 30
 --- !u!54 &2696434661228918078
 Rigidbody:
   m_ObjectHideFlags: 0

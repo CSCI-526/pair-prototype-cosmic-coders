@@ -1,47 +1,49 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameOverDetection : MonoBehaviour {
     public GameObject player;
     public GameObject Cube3;
     public Image gameOverImage;
-
+    public TextMeshProUGUI numberGrapples;
+    public Button restartButton;
     void Start() {
-        // Check for colliders
         if (player.GetComponent<Collider>() == null || Cube3.GetComponent<Collider>() == null)
         {
-            Debug.LogError("Both player and Cube3 must have colliders.");
+            Debug.LogError("Player, Cube3, and backWall must all have colliders.");
         }
 
-        // Ensure at least one object has a Rigidbody
         if (player.GetComponent<Rigidbody>() == null && Cube3.GetComponent<Rigidbody>() == null)
         {
             Debug.LogError("At least one of the objects must have a Rigidbody.");
         }
 
-        // Ensure isTrigger is false for both colliders to allow OnCollisionEnter to be called
-        player.GetComponent<Collider>().isTrigger = false;
-        Cube3.GetComponent<Collider>().isTrigger = false;
-
+        player.GetComponent<Collider>().isTrigger = true;
+        Cube3.GetComponent<Collider>().isTrigger = true;
+        restartButton.gameObject.SetActive(false);
         gameOverImage.enabled = false;
+        restartButton.onClick.AddListener(RestartGame);
     }
 
     void Update() {
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log("OnCollisionEnter called.");
-        // Check if the collision involves the player or Cube3
-        if (collision.gameObject == player || collision.gameObject == Cube3)
+        if (other.gameObject == player || other.gameObject == Cube3)
         {
-            Debug.Log("Collision detected between player and Cube3.");
+            Debug.Log("Trigger detected between player and wall.");
             gameOverImage.enabled = true;
+            numberGrapples.enabled = false;
+            restartButton.gameObject.SetActive(true);
         }
-        else
-        {
-            Debug.Log("Collision with an unrelated object.");
-        }
+    }
+
+    void RestartGame() {
+        Debug.Log("RestartGame called.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
