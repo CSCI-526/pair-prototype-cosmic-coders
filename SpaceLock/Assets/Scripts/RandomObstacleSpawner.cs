@@ -46,7 +46,7 @@ public class RandomObstacleSpawner : MonoBehaviour
             if (obstacle.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.mass = mass;
-                Debug.Log("Obstacle Mass: " + mass);
+                // Debug.Log("Obstacle Mass: " + mass);
             }
         }
     }

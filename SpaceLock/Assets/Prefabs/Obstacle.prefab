@@ -119,6 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4070c604f80f044c2acdfad6de559e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  farObstacle: {fileID: 2100000, guid: ea106ef629bedc04d8acde84de232353, type: 2}
+  nearObstacle: {fileID: 2100000, guid: 3cf9e915ef7554190b7669537095105b, type: 2}
+  thresholdDistance: 75
 --- !u!54 &2696434661228918078
 Rigidbody:
   m_ObjectHideFlags: 0
